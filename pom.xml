@@ -57,6 +57,7 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
 		<!--web-jars-->
 		<dependency>
 			<groupId>org.webjars</groupId>
