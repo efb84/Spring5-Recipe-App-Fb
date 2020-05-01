@@ -4,7 +4,9 @@ import com.fikogroup.sprgurufb.commands.NotesCommand;
 import com.fikogroup.sprgurufb.domainORmodel.Notes;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 
+@Component
 public class NotesToNotesCommand implements Converter<Notes, NotesCommand> {
     @Nullable
     @Override

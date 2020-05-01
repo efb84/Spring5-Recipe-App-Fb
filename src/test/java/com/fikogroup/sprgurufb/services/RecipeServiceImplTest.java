@@ -1,5 +1,7 @@
 package com.fikogroup.sprgurufb.services;
 
+import com.fikogroup.sprgurufb.converters.RecipeCommandToRecipe;
+import com.fikogroup.sprgurufb.converters.RecipeToRecipeCommand;
 import com.fikogroup.sprgurufb.domainORmodel.Recipe;
 import com.fikogroup.sprgurufb.repositories.RecipeRepository;
 import org.junit.Before;
@@ -22,10 +24,16 @@ public class RecipeServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
@@ -56,7 +64,7 @@ public class RecipeServiceImplTest {
         assertEquals(recipes.size(),1);
 
         verify(recipeRepository, times(1)).findAll();
-
+        verify(recipeRepository, never()).findById(anyLong());
 
     }
 

@@ -6,7 +6,9 @@ import com.fikogroup.sprgurufb.domainORmodel.Recipe;
 import com.fikogroup.sprgurufb.domainORmodel.UnitOfMeasure;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 
+@Component
 public class IngredientCommandToIngredient implements Converter<IngredientCommand, Ingredient> {
 
 

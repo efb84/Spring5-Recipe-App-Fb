@@ -4,7 +4,9 @@ import com.fikogroup.sprgurufb.commands.RecipeCommand;
 import com.fikogroup.sprgurufb.domainORmodel.Recipe;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
 
         private CategoryCommandToCategory categoryCommandToCategory;
