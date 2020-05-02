@@ -1,9 +1,11 @@
 package com.fikogroup.sprgurufb.services;
 
+import com.fikogroup.sprgurufb.commands.RecipeCommand;
 import com.fikogroup.sprgurufb.converters.RecipeCommandToRecipe;
 import com.fikogroup.sprgurufb.converters.RecipeToRecipeCommand;
 import com.fikogroup.sprgurufb.domainORmodel.Recipe;
 import com.fikogroup.sprgurufb.repositories.RecipeRepository;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -52,7 +54,29 @@ public class RecipeServiceImplTest {
     }
 
     @Test
-    public void getRecipes() throws Exception {
+    public void getRecipeCommandByIdTest() throws Exception {
+        Recipe recipe = new Recipe();
+        recipe.setId(1L);
+        Optional<Recipe> recipeOptional = Optional.of(recipe);
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        RecipeCommand recipeCommand = new RecipeCommand();
+        recipeCommand.setId(1L);
+
+        when(recipeToRecipeCommand.convert(any())).thenReturn(recipeCommand);
+
+        RecipeCommand commandById = recipeService.findCommandById(1L);
+
+        Assert.assertNotNull("Null recipe returned", commandById);
+        verify(recipeRepository, times(1)).findById(anyLong());
+        verify(recipeRepository, never()).findAll();
+    }
+
+
+
+    @Test
+    public void getRecipesTest() throws Exception {
         Recipe recipe =new Recipe();
         HashSet recipeData=new HashSet<>();
         recipe.setDescription("asadsadasd");

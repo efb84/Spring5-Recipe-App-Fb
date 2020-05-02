@@ -2,8 +2,6 @@ package com.fikogroup.sprgurufb.converters;
 
 import com.fikogroup.sprgurufb.commands.IngredientCommand;
 import com.fikogroup.sprgurufb.domainORmodel.Ingredient;
-import com.fikogroup.sprgurufb.domainORmodel.Recipe;
-import com.fikogroup.sprgurufb.domainORmodel.UnitOfMeasure;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -31,7 +29,7 @@ public class IngredientCommandToIngredient implements Converter<IngredientComman
         ingredient.setId(source.getId());
         ingredient.setDescription(source.getDescription());
         ingredient.setAmount(source.getAmount());
-        ingredient.setUom(uomConverter.convert(source.getUnitOfMeasure()));
+        ingredient.setUom(uomConverter.convert(source.getUom()));
 
         return ingredient;
     }
