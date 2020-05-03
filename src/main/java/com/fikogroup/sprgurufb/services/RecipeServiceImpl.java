@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeSet;
 
 @Slf4j
 @Service
@@ -32,9 +33,12 @@ public class RecipeServiceImpl implements RecipeService {
         log.debug("I'm in the service");
         log.debug("I'm in the service2");
         log.debug("I'm in the service3");
-        Set<Recipe> recipeSet=new HashSet<>();
 
+
+        Set<Recipe> recipeSet=new HashSet<>();
         recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
+
+
         return recipeSet;
     }
 
@@ -67,5 +71,8 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeToRecipeCommand.convert(savedRecipe);
     }
 
-
+    @Override
+    public void deleteById(Long idToDelete) {
+        recipeRepository.deleteById(idToDelete);
+    }
 }
