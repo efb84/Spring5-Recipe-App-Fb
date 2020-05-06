@@ -32,6 +32,7 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
         recipe.setCookTime(source.getCookTime());
         recipe.setServings(source.getServings());
         recipe.setSource(source.getSource());
+    //    recipe.setImage(source.getImage());
         recipe.setUrl(source.getUrl());
         recipe.setDifficulty(source.getDifficulty());
         recipe.setDirections(source.getDirections());
