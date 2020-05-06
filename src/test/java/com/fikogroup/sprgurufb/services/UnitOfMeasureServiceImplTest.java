@@ -17,39 +17,44 @@ import static org.mockito.Mockito.*;
 
 public class UnitOfMeasureServiceImplTest {
 
-    UnitOfMeasureToUnitOfMeasureCommand unitOfMeasureToUnitOfMeasureCommand = new UnitOfMeasureToUnitOfMeasureCommand();
-    UnitOfMeasureService service;
+    UnitOfMeasureServiceImpl unitOfMeasureService;
+    UnitOfMeasureToUnitOfMeasureCommand unitOfMeasureToUnitOfMeasureCommand
+            = new UnitOfMeasureToUnitOfMeasureCommand();
+
 
     @Mock
     UnitOfMeasureRepository unitOfMeasureRepository;
 
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-
-        service = new UnitOfMeasureServiceImpl(unitOfMeasureRepository, unitOfMeasureToUnitOfMeasureCommand);
+        unitOfMeasureService= new UnitOfMeasureServiceImpl(unitOfMeasureRepository, unitOfMeasureToUnitOfMeasureCommand);
     }
 
     @Test
-    public void listAllUoms() throws Exception {
+    public void listAllUoms() throws Exception{
         //given
-        Set<UnitOfMeasure> unitOfMeasures = new HashSet<>();
-        UnitOfMeasure uom1 = new UnitOfMeasure();
-        uom1.setId(1L);
-        unitOfMeasures.add(uom1);
+        Set<UnitOfMeasure> unitOfMeasuresList=new HashSet<>();
+        UnitOfMeasure unit1=new UnitOfMeasure();
+        unit1.setId(1L);
+        unitOfMeasuresList.add(unit1);
 
-        UnitOfMeasure uom2 = new UnitOfMeasure();
-        uom2.setId(2L);
-        unitOfMeasures.add(uom2);
+        UnitOfMeasure unit2=new UnitOfMeasure();
+        unit2.setId(2L);
+        unitOfMeasuresList.add(unit2);
 
-        when(unitOfMeasureRepository.findAll()).thenReturn(unitOfMeasures);
+        when(unitOfMeasureRepository.findAll()).thenReturn(unitOfMeasuresList);
+
 
         //when
-        Set<UnitOfMeasureCommand> commands = service.listAllUoms();
+
+        Set<UnitOfMeasureCommand> unitOfMeasureCommands=unitOfMeasureService.listAllUoms();
 
         //then
-        assertEquals(2, commands.size());
-        verify(unitOfMeasureRepository, times(1)).findAll();
-    }
+        assertEquals(2,unitOfMeasureCommands.size());
+        verify(unitOfMeasureRepository,times(1)).findAll();
 
+
+    }
 }

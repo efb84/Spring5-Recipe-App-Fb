@@ -53,7 +53,6 @@ public class RecipeControllerTest {
         Recipe recipe = new Recipe();
         recipe.setId(1L);
 
-
         when(recipeService.findById(anyLong())).thenReturn(recipe);
 
         mockMvc.perform(get("/recipe/1/show"))
@@ -64,6 +63,7 @@ public class RecipeControllerTest {
 
     @Test
     public void testGetNewRecipeForm() throws Exception {
+
         RecipeCommand command = new RecipeCommand();
 
         mockMvc.perform(get("/recipe/new"))
