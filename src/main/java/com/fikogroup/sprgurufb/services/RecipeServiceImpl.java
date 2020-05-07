@@ -4,6 +4,7 @@ import com.fikogroup.sprgurufb.commands.RecipeCommand;
 import com.fikogroup.sprgurufb.converters.RecipeCommandToRecipe;
 import com.fikogroup.sprgurufb.converters.RecipeToRecipeCommand;
 import com.fikogroup.sprgurufb.domainORmodel.Recipe;
+import com.fikogroup.sprgurufb.exceptions.NotFoundException;
 import com.fikogroup.sprgurufb.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,9 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(l);
 
         if (!recipeOptional.isPresent()) {
-            throw new RuntimeException("Recipe Not Found!");
+            //throw new RuntimeException("Recipe Not Found!");
+            //1st ---  throw new NotFoundException("Recipe Not Found");
+            throw new NotFoundException("Recipe Not Found. For ID value: " + l.toString() );
         }
 
         return recipeOptional.get();

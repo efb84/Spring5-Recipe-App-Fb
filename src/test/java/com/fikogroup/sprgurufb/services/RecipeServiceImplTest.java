@@ -4,6 +4,7 @@ import com.fikogroup.sprgurufb.commands.RecipeCommand;
 import com.fikogroup.sprgurufb.converters.RecipeCommandToRecipe;
 import com.fikogroup.sprgurufb.converters.RecipeToRecipeCommand;
 import com.fikogroup.sprgurufb.domainORmodel.Recipe;
+import com.fikogroup.sprgurufb.exceptions.NotFoundException;
 import com.fikogroup.sprgurufb.repositories.RecipeRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -51,6 +52,16 @@ public class RecipeServiceImplTest {
         assertNotNull("Null recipe returned", recipeReturned);
         verify(recipeRepository, times(1)).findById(anyLong());
         verify(recipeRepository, never()).findAll();
+    }
+
+
+    @Test(expected = NotFoundException.class)
+    public void getRecipeByIdTestNotFound() throws Exception {
+        Optional<Recipe> recipeOptional = Optional.empty();
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        Recipe recipeReturned = recipeService.findById(1L);
+
     }
 
     @Test
