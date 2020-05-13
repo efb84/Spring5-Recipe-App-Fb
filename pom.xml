@@ -58,6 +58,13 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!--MySQL Driver-->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+
 		<!--web-jars-->
 		<dependency>
 			<groupId>org.webjars</groupId>
